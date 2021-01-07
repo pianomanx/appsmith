@@ -1,5 +1,5 @@
 import { Datasource } from "entities/Datasource";
-import { ActionDatasource, isActionDatasource } from "entities/Action";
+import { isActionDatasource } from "entities/Action";
 import { BaseButton } from "components/designSystems/blueprint/ButtonComponent";
 import React from "react";
 import { isNil } from "lodash";
