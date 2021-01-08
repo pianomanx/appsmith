@@ -19,7 +19,6 @@ import {
   getDBDatasources,
   getAction,
   getActionResponses,
-  getDatasource,
 } from "selectors/entitiesSelector";
 import { PLUGIN_PACKAGE_DBS } from "constants/QueryEditorConstants";
 import { QueryAction } from "entities/Action";
@@ -186,13 +185,10 @@ const mapStateToProps = (state: AppState, props: any): ReduxStateProps => {
     props.match.params.queryId,
   ) as QueryAction;
   let pluginId;
-  let editorConfig: any;
   if (queryAction) {
-    const datasource = getDatasource(state, queryAction.datasource.id);
-    if (datasource) {
-      pluginId = datasource.pluginId;
-    }
+    pluginId = queryAction.pluginId;
   }
+  let editorConfig: any;
 
   if (editorConfigs && pluginId) {
     editorConfig = editorConfigs[pluginId];

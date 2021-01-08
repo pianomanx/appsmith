@@ -203,7 +203,7 @@ const Connected = () => {
         </OnboardingIndicator>
       </Header>
       <div style={{ marginTop: "30px" }}>
-        {!isNil(currentFormConfig)
+        {!isNil(currentFormConfig) && !isNil(datasource)
           ? renderDatasourceSection(currentFormConfig[0], datasource)
           : undefined}
       </div>

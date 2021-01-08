@@ -108,19 +108,6 @@ export const getDatasource = (
     (datasource) => datasource.id === datasourceId,
   );
 
-export const getEnforcedDatasource = (
-  state: AppState,
-  datasourceId: string,
-): Datasource => {
-  const result = state.entities.datasources.list.find(
-    (datasource) => datasource.id === datasourceId,
-  );
-  if (result === undefined) {
-    throw new Error("Could not find datasource with id :" + datasourceId);
-  }
-  return result;
-};
-
 export const getDatasourceDraft = (state: AppState, id: string) => {
   const drafts = state.ui.datasourcePane.drafts;
   if (id in drafts) return drafts[id];
