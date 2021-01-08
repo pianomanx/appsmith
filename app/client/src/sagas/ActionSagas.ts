@@ -44,12 +44,11 @@ import {
 } from "selectors/editorSelectors";
 import AnalyticsUtil from "utils/AnalyticsUtil";
 import { QUERY_CONSTANT } from "constants/QueryEditorConstants";
-import { Action, isActionDatasource } from "entities/Action";
+import { Action } from "entities/Action";
 import { ActionData } from "reducers/entityReducers/actionsReducer";
 import {
   getAction,
   getCurrentPageNameByActionId,
-  getDatasource,
   getPageNameByPageId,
 } from "selectors/entitiesSelector";
 import { getDataSources } from "selectors/editorSelectors";
@@ -93,16 +92,7 @@ export function* createActionSaga(
         ...actionPayload.payload.eventData,
       });
 
-      let newAction = response.data;
-
-      if (newAction.datasource.id) {
-        const datasource = yield select(getDatasource, newAction.datasource.id);
-
-        newAction = {
-          ...newAction,
-          datasource,
-        };
-      }
+      const newAction = response.data;
 
       yield put(createActionSuccess(newAction));
     }
@@ -249,27 +239,11 @@ export function* updateActionSaga(actionPayload: ReduxAction<{ id: string }>) {
         });
       }
 
-      let updatedAction = response.data;
-      const updatedActionDatasource = updatedAction.datasource;
-
-      if (isActionDatasource(updatedActionDatasource)) {
-        const datasource = yield select(
-          getDatasource,
-          updatedActionDatasource.id,
-        );
-        if (datasource) {
-          updatedAction = {
-            ...updatedAction,
-            datasource,
-          };
-        }
-      }
-
       PerformanceTracker.stopAsyncTracking(
         PerformanceTransactionName.UPDATE_ACTION_API,
       );
 
-      yield put(updateActionSuccess({ data: updatedAction }));
+      yield put(updateActionSuccess({ data: response.data }));
     }
   } catch (error) {
     PerformanceTracker.stopAsyncTracking(

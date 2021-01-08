@@ -14,7 +14,7 @@ export enum PaginationType {
 }
 
 export interface ActionConfig {
-  timeoutInMillisecond: number;
+  timeoutInMillisecond?: number;
   paginationType?: PaginationType;
 }
 
@@ -50,7 +50,7 @@ export interface ApiActionConfig extends ActionConfig {
 }
 
 export interface QueryActionConfig extends ActionConfig {
-  body: string;
+  body?: string;
 }
 
 export const isActionDatasource = (val: any): val is ActionDatasource => {
@@ -65,13 +65,10 @@ export interface ActionDatasource {
 interface BaseAction {
   id: string;
   name: string;
-  //datasource: EmbeddedRestDatasource | ActionDatasource;
   organizationId: string;
   pageId: string;
   collectionId?: string;
-  //actionConfiguration: Partial<ActionConfig>;
   pluginId: string;
-  //pluginType: PluginType;
   executeOnLoad: boolean;
   dynamicBindingPathList: DynamicPath[];
   isValid: boolean;

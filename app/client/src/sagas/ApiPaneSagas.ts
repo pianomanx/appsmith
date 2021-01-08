@@ -393,11 +393,7 @@ function* handleCreateNewQueryActionSaga(
           from: action.payload.from,
           dataSource: validDataSources[0].name,
         },
-        actionConfiguration: {
-          headers: [],
-          httpMethod: "GET",
-          timeoutInMillisecond: 10000,
-        },
+        actionConfiguration: {},
       }),
     );
     history.push(
