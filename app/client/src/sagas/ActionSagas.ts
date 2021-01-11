@@ -145,9 +145,9 @@ export function* fetchActionsForViewModeSaga(
     { mode: "VIEWER", appId: applicationId },
   );
   try {
-    const response: GenericApiResponse<Action[]> = yield ActionAPI.fetchActionsForViewMode(
-      applicationId,
-    );
+    const response: GenericApiResponse<
+      Action[]
+    > = yield ActionAPI.fetchActionsForViewMode(applicationId);
     const isValidResponse = yield validateResponse(response);
     if (isValidResponse) {
       yield put({
