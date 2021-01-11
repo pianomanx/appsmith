@@ -1,5 +1,6 @@
 import { getFormValues, isValid, getFormInitialValues } from "redux-form";
 import { AppState } from "reducers";
+import { Action } from "entities/Action";
 import { ActionData } from "reducers/entityReducers/actionsReducer";
 
 type GetFormData = (

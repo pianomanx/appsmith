@@ -1,7 +1,5 @@
 // TODO Abhinav, this is not passing
 // import { getPropertyControlTypes } from "./index";
-// TODO: Is this required?
-// eslint-disable-next-line
 import _ from "lodash";
 
 // const types = getPropertyControlTypes();

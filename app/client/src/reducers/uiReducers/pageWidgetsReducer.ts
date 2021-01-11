@@ -1,5 +1,9 @@
 import { createImmerReducer } from "utils/AppsmithUtils";
-import { ReduxActionTypes, ReduxAction } from "constants/ReduxActionConstants";
+import {
+  ReduxActionTypes,
+  ReduxActionErrorTypes,
+  ReduxAction,
+} from "constants/ReduxActionConstants";
 import { DSL } from "./pageCanvasStructure";
 import { WidgetProps } from "widgets/BaseWidget";
 import CanvasWidgetsNormalizer from "normalizers/CanvasWidgetsNormalizer";

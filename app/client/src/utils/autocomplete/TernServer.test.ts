@@ -88,7 +88,7 @@ describe("Tern server", () => {
       },
     ];
 
-    testCases.forEach((testCase) => {
+    testCases.forEach((testCase, index) => {
       const request = ternServer.buildRequest(testCase.input, {});
 
       expect(request.query.end).toEqual(testCase.expectedOutput);
@@ -140,7 +140,7 @@ describe("Tern server", () => {
       },
     ];
 
-    testCases.forEach((testCase) => {
+    testCases.forEach((testCase, index) => {
       MockCodemirrorEditor.getValue.mockReturnValueOnce(
         testCase.input.codeEditor.value,
       );

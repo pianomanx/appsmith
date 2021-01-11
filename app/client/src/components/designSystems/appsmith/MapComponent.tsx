@@ -148,7 +148,7 @@ const MyMapComponent = withGoogleMap((props: any) => {
             props.selectedMarker.lat === marker.lat &&
             props.selectedMarker.long === marker.long
           }
-          onClick={() => {
+          onClick={(e) => {
             setMapCenter({
               ...marker,
               lng: marker.long,

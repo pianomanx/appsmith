@@ -6,7 +6,6 @@ type TagProps = CommonComponentProps & {
   variant?: "success" | "info" | "warning" | "danger"; //default info
 };
 
-// eslint-disable-next-line
 export default function Tag(props: TagProps) {
   return null;
 }

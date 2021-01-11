@@ -1,4 +1,8 @@
-import { CONTENT_TYPE, HTTP_METHODS } from "constants/ApiEditorConstants";
+import {
+  CONTENT_TYPE,
+  HTTP_METHODS,
+  POST_BODY_FORMAT_OPTIONS,
+} from "constants/ApiEditorConstants";
 
 import { ApiAction } from "entities/Action";
 import _ from "lodash";
@@ -39,8 +43,6 @@ export const transformRestAction = (data: ApiAction): ApiAction => {
         },
       );
       if (contentTypeHeader) {
-        // TODO: what is this logic doing here?
-        // eslint-disable-next-line
         contentType = contentTypeHeader.value;
       }
     }

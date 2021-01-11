@@ -120,7 +120,7 @@ class ImageComponent extends React.Component<
             }
           }}
         >
-          {({ zoomIn, zoomOut }: any) => (
+          {({ zoomIn, zoomOut, setScale, ...rest }: any) => (
             <React.Fragment>
               <TransformComponent>
                 <StyledImage

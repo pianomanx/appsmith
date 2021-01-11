@@ -335,7 +335,7 @@ const FilePickerComponent = (props: FilePickerProps) => {
           icon="delete"
           size={Size.medium}
           category={Category.tertiary}
-          onClick={() => removeFile()}
+          onClick={(el) => removeFile()}
         />
       </div>
     </ContainerDiv>
