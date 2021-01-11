@@ -370,7 +370,8 @@ function* copyActionSaga(
     const copyAction = Object.assign({}, actionObject, {
       name: action.payload.name,
       pageId: action.payload.destinationPageId,
-    });
+    }) as Partial<Action>;
+    delete copyAction.id;
     const response = yield ActionAPI.createAPI(copyAction);
     const datasources = yield select(getDataSources);
 

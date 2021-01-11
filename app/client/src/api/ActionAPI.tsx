@@ -117,11 +117,7 @@ class ActionAPI extends API {
   static createAPI(
     apiConfig: Partial<Action>,
   ): AxiosPromise<ActionCreateUpdateResponse> {
-    const action = Object.assign({}, apiConfig);
-    // In case we were sent an action with an id, delete it before sending to the server
-    // Example: createAPI
-    delete action.id;
-    return API.post(ActionAPI.url, action);
+    return API.post(ActionAPI.url, apiConfig);
   }
 
   static fetchActions(

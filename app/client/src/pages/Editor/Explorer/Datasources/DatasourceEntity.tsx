@@ -21,7 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "reducers";
 import { DatasourceStructureContainer } from "./DatasourceStructureContainer";
 import { getAction } from "selectors/entitiesSelector";
-import { isActionDatasource } from "entities/Action";
+import { isStoredDatasource } from "entities/Action";
 
 type ExplorerDatasourceEntityProps = {
   plugin: Plugin;
@@ -82,7 +82,7 @@ export const ExplorerDatasourceEntity = (
   let isDefaultExpanded = false;
   if (expandDatasourceId === props.datasource.id) {
     isDefaultExpanded = true;
-  } else if (queryAction && isActionDatasource(queryAction.datasource)) {
+  } else if (queryAction && isStoredDatasource(queryAction.datasource)) {
     isDefaultExpanded = queryAction.datasource.id === props.datasource.id;
   }
 

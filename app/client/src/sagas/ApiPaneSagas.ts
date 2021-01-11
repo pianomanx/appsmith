@@ -14,7 +14,7 @@ import {
 import { getFormData } from "selectors/formSelectors";
 import { API_EDITOR_FORM_NAME } from "constants/forms";
 import {
-  DEFAULT_API_ACTION,
+  DEFAULT_API_ACTION_CONFIG,
   POST_BODY_FORMAT_OPTIONS,
   REST_PLUGIN_PACKAGE_NAME,
   POST_BODY_FORMATS,
@@ -140,7 +140,7 @@ function* initializeExtraFormDataSaga() {
   const headers = get(
     values,
     "actionConfiguration.headers",
-    DEFAULT_API_ACTION.actionConfiguration?.headers,
+    DEFAULT_API_ACTION_CONFIG.headers,
   );
 
   const queryParameters = get(
@@ -157,7 +157,7 @@ function* initializeExtraFormDataSaga() {
         change(
           API_EDITOR_FORM_NAME,
           "actionConfiguration.queryParameters",
-          DEFAULT_API_ACTION.actionConfiguration?.queryParameters,
+          DEFAULT_API_ACTION_CONFIG.queryParameters,
         ),
       );
   }
@@ -338,7 +338,7 @@ function* handleCreateNewApiActionSaga(
     const newActionName = createNewApiName(pageActions, pageId);
     yield put(
       createActionRequest({
-        ...DEFAULT_API_ACTION,
+        actionConfiguration: DEFAULT_API_ACTION_CONFIG,
         name: newActionName,
         datasource: {
           name: "DEFAULT_REST_DATASOURCE",

@@ -12,11 +12,11 @@ import CodeEditor, {
 import { API_EDITOR_FORM_NAME } from "constants/forms";
 import { AppState } from "reducers";
 import { connect } from "react-redux";
-import { Datasource } from "entities/Datasource";
 import _ from "lodash";
 import {
   DEFAULT_DATASOURCE,
   EmbeddedRestDatasource,
+  Datasource,
 } from "entities/Datasource";
 import CodeMirror from "codemirror";
 import {

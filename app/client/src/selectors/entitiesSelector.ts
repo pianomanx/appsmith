@@ -6,8 +6,8 @@ import {
 import { ActionResponse } from "api/ActionAPI";
 import { QUERY_CONSTANT } from "constants/QueryEditorConstants";
 import { createSelector } from "reselect";
-import { Datasource, isEmbeddedRestDatasource } from "entities/Datasource";
-import { Action, ActionWithDatasource } from "entities/Action";
+import { Datasource } from "entities/Datasource";
+import { Action } from "entities/Action";
 import { find } from "lodash";
 import ImageAlt from "assets/images/placeholder-image.svg";
 import { CanvasWidgetsReduxState } from "../reducers/entityReducers/canvasWidgetsReducer";
@@ -231,26 +231,6 @@ export const getAction = (
 ): Action | undefined => {
   const action = find(state.entities.actions, (a) => a.config.id === actionId);
   return action ? action.config : undefined;
-};
-
-// Todo: check if we can just use getAction
-export const getActionWithDatasource = (
-  state: AppState,
-  actionId: string,
-): ActionWithDatasource | undefined => {
-  const action = getAction(state, actionId);
-
-  // If there's no datasource with action, something terrible has happened
-  if (!action || !action.datasource) return;
-  if (isEmbeddedRestDatasource(action.datasource)) {
-    // If there's no id on action.datasource, then the action.datasource object is complete
-    return { action: action, datasource: action.datasource };
-  }
-
-  const datasource = getDatasource(state, action.datasource.id);
-  if (!datasource) return;
-
-  return { action, datasource };
 };
 
 export function getCurrentPageNameByActionId(

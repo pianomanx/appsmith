@@ -53,12 +53,12 @@ export interface QueryActionConfig extends ActionConfig {
   body?: string;
 }
 
-export const isActionDatasource = (val: any): val is ActionDatasource => {
+export const isStoredDatasource = (val: any): val is StoredDatasource => {
   if (!_.isObject(val)) return false;
   if (!("id" in val)) return false;
   return true;
 };
-export interface ActionDatasource {
+export interface StoredDatasource {
   id: string;
 }
 
@@ -88,11 +88,11 @@ export interface EmbeddedApiAction extends BaseApiAction {
   datasource: EmbeddedRestDatasource;
 }
 
-export interface DatasourceApiAction extends BaseApiAction {
-  datasource: ActionDatasource;
+export interface StoredDatasourceApiAction extends BaseApiAction {
+  datasource: StoredDatasource;
 }
 
-export type ApiAction = EmbeddedApiAction | DatasourceApiAction;
+export type ApiAction = EmbeddedApiAction | StoredDatasourceApiAction;
 
 export type RapidApiAction = ApiAction & {
   templateId: string;
@@ -105,12 +105,7 @@ export type RapidApiAction = ApiAction & {
 export interface QueryAction extends BaseAction {
   pluginType: PluginType.DB;
   actionConfiguration: QueryActionConfig;
-  datasource: ActionDatasource;
+  datasource: StoredDatasource;
 }
 
 export type Action = ApiAction | QueryAction;
-
-export interface ActionWithDatasource {
-  action: Action;
-  datasource: EmbeddedRestDatasource | Datasource;
-}

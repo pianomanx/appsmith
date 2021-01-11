@@ -17,7 +17,7 @@ import {
 } from "constants/routes";
 import { createNewApiName, createNewQueryName } from "utils/AppsmithUtils";
 import { getCurrentPageId } from "selectors/editorSelectors";
-import { DEFAULT_API_ACTION } from "constants/ApiEditorConstants";
+import { DEFAULT_API_ACTION_CONFIG } from "constants/ApiEditorConstants";
 import {
   ApiActionConfig,
   PluginType,
@@ -101,7 +101,7 @@ const Connected = () => {
         actionType: "Query",
         from: "datasource-pane",
       },
-    } as Partial<QueryAction>; // TODO: refactor later
+    } as Partial<QueryAction>; // TODO: refactor later. Handle case for undefined datasource before we reach here.
     if (datasource)
       if (
         isInOnboarding &&
@@ -129,11 +129,9 @@ const Connected = () => {
   const createApiAction = useCallback(() => {
     const newApiName = createNewApiName(actions, currentPageId || "");
     const headers = datasource?.datasourceConfiguration?.headers ?? [];
-    const defaultAction: Partial<ApiActionConfig> | undefined = {
-      ...DEFAULT_API_ACTION.actionConfiguration,
-      headers: headers.length
-        ? headers
-        : DEFAULT_API_ACTION.actionConfiguration?.headers,
+    const defaultAction: ApiActionConfig = {
+      ...DEFAULT_API_ACTION_CONFIG,
+      headers: headers.length ? headers : DEFAULT_API_ACTION_CONFIG.headers,
     };
 
     if (!datasource?.datasourceConfiguration?.url) {
@@ -160,7 +158,7 @@ const Connected = () => {
         actionConfiguration: {
           ...defaultAction,
         },
-      } as ApiAction), // TODO: refactor later
+      }), // TODO: refactor later. actionConfiguratoion
     );
     history.push(
       API_EDITOR_URL_WITH_SELECTED_PAGE_ID(
