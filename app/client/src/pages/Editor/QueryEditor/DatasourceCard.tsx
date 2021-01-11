@@ -1,5 +1,5 @@
 import { Datasource } from "entities/Datasource";
-import { ActionDatasource, isActionDatasource } from "entities/Action";
+import { isStoredDatasource } from "entities/Action";
 import { BaseButton } from "components/designSystems/blueprint/ButtonComponent";
 import React from "react";
 import { isNil } from "lodash";
@@ -92,7 +92,7 @@ const DatasourceCard = (props: DatasourceCardProps) => {
   const queryActions = useSelector(getQueryActionsForCurrentPage);
   const queriesWithThisDatasource = queryActions.filter(
     (action) =>
-      isActionDatasource(action.config.datasource) &&
+      isStoredDatasource(action.config.datasource) &&
       action.config.datasource.id === datasource.id,
   ).length;
 
