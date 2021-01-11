@@ -211,7 +211,6 @@ export function* updateActionSaga(actionPayload: ReduxAction<{ id: string }>) {
     let action = yield select(getAction, actionPayload.payload.id);
     if (!action) throw new Error("Could not find action to update");
     const isApi = action.pluginType === "API";
-    const isDB = action.pluginType === "DB";
 
     if (isApi) {
       action = transformRestAction(action);
