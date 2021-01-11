@@ -1,4 +1,4 @@
-import { Datasource, EmbeddedRestDatasource } from "entities/Datasource";
+import { EmbeddedRestDatasource } from "entities/Datasource";
 import { DynamicPath } from "../../utils/DynamicBindingUtils";
 import _ from "lodash";
 

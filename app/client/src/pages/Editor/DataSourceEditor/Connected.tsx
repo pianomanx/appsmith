@@ -18,12 +18,7 @@ import {
 import { createNewApiName, createNewQueryName } from "utils/AppsmithUtils";
 import { getCurrentPageId } from "selectors/editorSelectors";
 import { DEFAULT_API_ACTION_CONFIG } from "constants/ApiEditorConstants";
-import {
-  ApiActionConfig,
-  PluginType,
-  ApiAction,
-  QueryAction,
-} from "entities/Action";
+import { ApiActionConfig, PluginType, QueryAction } from "entities/Action";
 import { renderDatasourceSection } from "./DatasourceSection";
 import { Toaster } from "components/ads/Toast";
 import { Variant } from "components/ads/common";
@@ -129,7 +124,7 @@ const Connected = () => {
   const createApiAction = useCallback(() => {
     const newApiName = createNewApiName(actions, currentPageId || "");
     const headers = datasource?.datasourceConfiguration?.headers ?? [];
-    const defaultAction: ApiActionConfig = {
+    const defaultApiActionConfig: ApiActionConfig = {
       ...DEFAULT_API_ACTION_CONFIG,
       headers: headers.length ? headers : DEFAULT_API_ACTION_CONFIG.headers,
     };
@@ -155,10 +150,8 @@ const Connected = () => {
           actionType: "API",
           from: "datasource-pane",
         },
-        actionConfiguration: {
-          ...defaultAction,
-        },
-      }), // TODO: refactor later. actionConfiguratoion
+        actionConfiguration: defaultApiActionConfig,
+      }),
     );
     history.push(
       API_EDITOR_URL_WITH_SELECTED_PAGE_ID(

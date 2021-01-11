@@ -1,4 +1,4 @@
-import { Action, ApiAction, ApiActionConfig } from "entities/Action";
+import { ApiActionConfig } from "entities/Action";
 import { DEFAULT_ACTION_TIMEOUT } from "constants/ApiConstants";
 import { zipObject } from "lodash";
 
