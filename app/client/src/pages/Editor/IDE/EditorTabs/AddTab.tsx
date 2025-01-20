@@ -5,7 +5,8 @@ import { useCurrentEditorState } from "../hooks";
 import {
   EditorEntityTab,
   EditorEntityTabState,
-} from "@appsmith/entities/IDE/constants";
+} from "ee/entities/IDE/constants";
+import { Text } from "@appsmith/ads";
 
 const AddTab = ({
   isListActive,
@@ -25,13 +26,17 @@ const AddTab = ({
     onClose();
   };
 
+  const content = `New ${segment === EditorEntityTab.JS ? "JS" : "Query"}`;
+
   return (
     <FileTab
       isActive={segmentMode === EditorEntityTabState.Add && !isListActive}
       onClick={newTabClickCallback}
       onClose={(e) => onCloseClick(e)}
-      title={`New ${segment === EditorEntityTab.JS ? "JS" : "Query"}`}
-    />
+      title={content}
+    >
+      <Text kind="body-s">{content}</Text>
+    </FileTab>
   );
 };
 
